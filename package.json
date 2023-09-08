@@ -1,0 +1,23 @@
+{
+  "name": "food-reciepe",
+  "version": "1.0.0",
+  "description": "Food reciepe application",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AHMEDNABIB/food-reciepe.git"
+  },
+  "author": "Ahmed Nabib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AHMEDNABIB/food-reciepe/issues"
+  },
+  "homepage": "https://github.com/AHMEDNABIB/food-reciepe#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "parcel": "^2.9.3"
+  }
+}
