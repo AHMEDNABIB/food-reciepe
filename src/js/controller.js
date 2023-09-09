@@ -38,15 +38,20 @@ const renderSpinner = function (parentEl) {
 const showRecipe = async function () {
   
   try {
+    
+    const id = window.location.hash.slice(1)
+    
+    if (!id) return
+  
     // Loading recipe
     renderSpinner(recipeContainer)
     const res = await fetch(
-      'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886'
+      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
     );
 
     const data = await res.json()
 
-    if(!res.ok) throw new Error(`${data.message} (${res.status})`)
+    if (!res.ok) throw new Error(`${data.message} (${res.status})`)
 
     
 
@@ -120,22 +125,22 @@ const showRecipe = async function () {
             <h2 class="heading--2">Recipe ingredients</h2>
             <ul class="recipe__ingredient-list">
              
-            ${ recipe.ingredients.map(ing => {
-              return `
+            ${recipe.ingredients.map(ing => {
+      return `
                <li class="recipe__ingredient">
                 <svg class="recipe__icon">
                   <use href="${icons}#icon-check"></use>
                 </svg>
-                <div class="recipe__quantity">${ing.quantity ==null? 0: ing.quantity}</div>
+                <div class="recipe__quantity">${ing.quantity == null ? 0 : ing.quantity}</div>
                 <div class="recipe__description">
                   <span class="recipe__unit">${ing.unit}</span>
                   ${ing.description}
                 </div>
               </li>
               `
-            }).join('')
+    }).join('')
       
-            }
+      }
 
             
             </ul>
@@ -161,7 +166,7 @@ const showRecipe = async function () {
           </div>
     `;
 
-    recipeContainer.innerHTML=''
+    recipeContainer.innerHTML = ''
     
     recipeContainer.insertAdjacentHTML('afterbegin', markup);
 
@@ -173,4 +178,11 @@ const showRecipe = async function () {
   
 }
 
-showRecipe()
+
+// ['hashchange', 'load'].forEach(ev => { window.addEventListener(ev, showRecipe) } );
+
+const loadEvent = ['hashchange', 'load'];
+
+loadEvent.forEach(ev => window.addEventListener(ev, showRecipe));
+
+
