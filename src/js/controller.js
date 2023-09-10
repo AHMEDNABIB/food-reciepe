@@ -14,10 +14,6 @@ import 'regenerator-runtime/runtime'
 
 ///////////////////////////////////////
 
-
-
-
-
 const controlRecipe = async function () {
   
   try {
@@ -35,17 +31,27 @@ const controlRecipe = async function () {
     // Rendering recipe
     recipeView.render(model.state.recipe);
 
-  } catch (error) {
+  } catch (err) {
+
+     recipeView.renderError();
     
   }
   
 }
 
 
+const init = function () {
+ 
+  recipeView.addHandlerRender(controlRecipe);
+
+};
+init();
+
+
 // ['hashchange', 'load'].forEach(ev => { window.addEventListener(ev, showRecipe) } );
 
-const loadEvent = ['hashchange', 'load'];
+// const loadEvent = ['hashchange', 'load'];
 
-loadEvent.forEach(ev => window.addEventListener(ev, controlRecipe));
+// loadEvent.forEach(ev => window.addEventListener(ev, controlRecipe));
 
 
