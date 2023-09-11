@@ -5,10 +5,10 @@ import recipeView from './views/recipeView.js';
 import resultView from './views/resultView.js';
 import searchView from './views/searchView.js';
 
-if (module.hot) {
-  module.hot.accept();
+// if (module.hot) {
+//   module.hot.accept();
   
-}
+// }
 
 const controlRecipe = async function () {
   try {
@@ -37,7 +37,13 @@ const controlSearchResults = async function () {
 
     await model.loadSearchResults(query);
     // console.log(model.state.search.results);
-    resultView.render(model.state.search.results);
+
+    // Render all results
+    // resultView.render(model.state.search.results);
+    
+    // Render Per Page
+    resultView.render(model.getSearchResultsPage());
+
   } catch (error) {}
 };
 
