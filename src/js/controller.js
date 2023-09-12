@@ -5,11 +5,14 @@ import recipeView from './views/recipeView.js';
 import resultView from './views/resultView.js';
 import searchView from './views/searchView.js';
 import paginationView from './views/paginationView.js';
+
 const controlRecipe = async function () {
   try {
     const id = window.location.hash.slice(1);
 
     if (!id) return;
+    // 0) Update results view to mark selected search result
+    resultView.update(model.getSearchResultsPage());
 
     // Loading recipe
     recipeView.renderSpinner();
@@ -59,7 +62,8 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Update the recipe view
-  recipeView.render(model.state.recipe);
+  // recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
 };
 
 
